@@ -67,4 +67,4 @@ https://material.angular.io/cdk/drag-drop/overview
    - **Add Group**: Adds a new child node under the selected node.
    - **Edit Group**: Edits the name of the selected group.
    - **Delete Group**: Removes the selected group (confirmation prompt).
-7. **Disable Actions**: The action buttons will be disabled if a node doesn't have any children, or if the drag-and-drop operation places a node without valid children.
+
