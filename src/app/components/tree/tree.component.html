@@ -1,34 +1,64 @@
 
 <!-- Search by Words -->
-
-<div class="search-container">
-  <input
-    type="text"
-    [(ngModel)]="searchKey"
-    (input)="filterTree()"
-    placeholder="Search by clinician"
-    class="search-input"
-  />
-</div>
-
-<!-- List of Clinicians -->
- 
-
-<mat-tree [dataSource]="filteredDataSource" [treeControl]="treeControl" class="tree-container">
-  <div cdkDropList [cdkDropListData]="filteredDataSource.data" class="drag-drop-container" (cdkDropListDropped)="onDrop($event)">
+<div id="app-root-class">
+  <div class="search-container">
+    <input
+      type="text"
+      [(ngModel)]="searchKey"
+      (input)="filterTree()"
+      placeholder="Search by clinician"
+      class="search-input"
+    />
+  </div>
   
-    <!-- Expandable node template -->
-    <mat-nested-tree-node
-      *matTreeNodeDef="let node; when: hasChild"
-      [ngClass]="['node-level', getNodeClass(node, getNodeLevel(node)), 'parentNode']"
-      cdkDrag [cdkDragData]="node" class="tree-node">
-      <div class="node-item">
-
-        <div class="node-content">
-          <div matTreeNodeToggle class="mattreenodetoggle-item" (click)="toggleAccordion(node)">
-            <mat-icon>{{ treeControl.isExpanded(node) ? 'remove' : 'add' }}</mat-icon>
-
-            <!-- Drag Icon -->
+  <!-- List of Clinicians -->
+   
+  
+  <mat-tree [dataSource]="filteredDataSource" [treeControl]="treeControl" class="tree-container">
+    <div cdkDropList [cdkDropListData]="filteredDataSource.data" class="drag-drop-container" (cdkDropListDropped)="onDrop($event)">
+    
+      <!-- Expandable node template -->
+      <mat-nested-tree-node
+        *matTreeNodeDef="let node; when: hasChild"
+        [ngClass]="['node-level', getNodeClass(node, getNodeLevel(node)), 'parentNode']"
+        cdkDrag [cdkDragData]="node" class="tree-node">
+        <div class="node-item">
+  
+          <div class="node-content">
+            <div matTreeNodeToggle class="mattreenodetoggle-item" (click)="toggleAccordion(node)">
+              <mat-icon>{{ treeControl.isExpanded(node) ? 'remove' : 'add' }}</mat-icon>
+  
+              <!-- Drag Icon -->
+              <div class="node-drag-icon" cdkDragHandle>
+                <mat-icon>drag_indicator</mat-icon>
+              </div>
+              <span>
+                {{ node.name }}
+              </span>
+            </div>
+          </div>
+  
+          <div class="node-actions">
+            <button mat-icon-button class="action-btn" (click)="addChild(node)">
+              <mat-icon>add</mat-icon> Add Group
+            </button>
+            <button mat-icon-button class="action-btn" (click)="editGroup(node)">
+              <mat-icon>edit</mat-icon> Edit Group
+            </button>
+            <button mat-icon-button color="warn" class="action-btn" (click)="deleteGroup(node)">
+              <mat-icon>delete</mat-icon> Delete Group
+            </button>
+          </div>
+        </div>
+  
+        <!-- Recursive nested nodes for expansion -->
+        <ng-container matTreeNodeOutlet></ng-container>
+      </mat-nested-tree-node>
+  
+      <mat-tree-node *matTreeNodeDef="let node" [ngClass]="['node-level', getNodeClass(node, getNodeLevel(node))]" cdkDrag class="tree-node">
+        <div class="node-item">
+          <div class="node-content">
+            <mat-icon>{{ node.type === 'hospital' ? 'domain' : 'radio_button_unchecked' }}</mat-icon>
             <div class="node-drag-icon" cdkDragHandle>
               <mat-icon>drag_indicator</mat-icon>
             </div>
@@ -36,51 +66,22 @@
               {{ node.name }}
             </span>
           </div>
-        </div>
-
-        <div class="node-actions">
-          <button mat-icon-button class="action-btn" (click)="addChild(node)">
-            <mat-icon>add</mat-icon> Add Group
-          </button>
-          <button mat-icon-button class="action-btn" (click)="editGroup(node)">
-            <mat-icon>edit</mat-icon> Edit Group
-          </button>
-          <button mat-icon-button color="warn" class="action-btn" (click)="deleteGroup(node)">
-            <mat-icon>delete</mat-icon> Delete Group
-          </button>
-        </div>
-      </div>
-
-      <!-- Recursive nested nodes for expansion -->
-      <ng-container matTreeNodeOutlet></ng-container>
-    </mat-nested-tree-node>
-
-    <!-- Non-expandable node template -->
-    <mat-tree-node *matTreeNodeDef="let node" [ngClass]="['node-level', getNodeClass(node, getNodeLevel(node))]" cdkDrag class="tree-node">
-      <div class="node-item">
-        <div class="node-content">
-          <mat-icon>{{ node.type === 'hospital' ? 'domain' : 'radio_button_unchecked' }}</mat-icon>
-          <div class="node-drag-icon" cdkDragHandle>
-            <mat-icon>drag_indicator</mat-icon>
+  
+          <div class="node-actions">
+            <button mat-icon-button class="action-btn" (click)="addChild(node)">
+              <mat-icon>add</mat-icon> Add Group
+            </button>
+            <button mat-icon-button class="action-btn" (click)="editGroup(node)">
+              <mat-icon>edit</mat-icon> Edit Group
+            </button>
+            <button mat-icon-button color="warn" class="action-btn" (click)="deleteGroup(node)">
+              <mat-icon>delete</mat-icon> Delete Group
+            </button>
           </div>
-          <span>
-            {{ node.name }}
-          </span>
         </div>
+      </mat-tree-node>
+  
+    </div>
+  </mat-tree>
+</div>
 
-        <div class="node-actions">
-          <button mat-icon-button class="action-btn" (click)="addChild(node)">
-            <mat-icon>add</mat-icon> Add Group
-          </button>
-          <button mat-icon-button class="action-btn" (click)="editGroup(node)">
-            <mat-icon>edit</mat-icon> Edit Group
-          </button>
-          <button mat-icon-button color="warn" class="action-btn" (click)="deleteGroup(node)">
-            <mat-icon>delete</mat-icon> Delete Group
-          </button>
-        </div>
-      </div>
-    </mat-tree-node>
-
-  </div>
-</mat-tree>

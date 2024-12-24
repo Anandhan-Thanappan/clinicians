@@ -14,7 +14,7 @@ export class TreeComponent {
   treeControl = new NestedTreeControl<Group>((node) => node.children);
   dataSource = new MatTreeNestedDataSource<Group>();
   filteredDataSource = new MatTreeNestedDataSource<Group>(); // For search functionality
-  expandedNodes: Set<Group> = new Set<Group>(); // Manually track expanded nodes
+  expandedNodes: Set<Group> = new Set<Group>(); 
   searchKey: string = ''; // Search input value
 
   constructor(private groupService: GroupService, private cdr: ChangeDetectorRef) {
@@ -22,8 +22,10 @@ export class TreeComponent {
 
     // Subscribe to changes from the service
     this.groupService.groups$.subscribe((groups) => {
+      this.dataSource.data = [];
       this.dataSource.data = [...groups];
-      this.filteredDataSource.data = [...groups]; // Initialize filteredDataSource
+      this.filteredDataSource.data = [];
+      this.filteredDataSource.data = [...groups]; 
     });
   }
 
@@ -61,18 +63,18 @@ export class TreeComponent {
   toggleAccordion(node: Group): void {
     if (this.expandedNodes.has(node)) {
       this.treeControl.collapse(node);
-      this.expandedNodes.delete(node); // Collapse node
+      this.expandedNodes.delete(node); 
     } else {
       this.expandedNodes.forEach((expandedNode) => {
-        this.treeControl.collapse(expandedNode); // Collapse all other nodes
+        this.treeControl.collapse(expandedNode); 
       });
-      this.treeControl.expand(node); // Expand current node
-      this.expandedNodes.clear(); // Reset expanded nodes
-      this.expandedNodes.add(node); // Add current node
+      this.treeControl.expand(node); 
+      this.expandedNodes.clear(); 
+      this.expandedNodes.add(node); 
     }
   }
 
-  // Handle drag-and-drop (this example integrates drag-drop module logic)
+  // Handle drag-and-drop
   onDrop(event: CdkDragDrop<Group[]>): void {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);

@@ -5,8 +5,9 @@ body {
     height: 100%;
 }
 
-body {
+body, i, span, mat-icon {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+    /* color: white; */
 }
 

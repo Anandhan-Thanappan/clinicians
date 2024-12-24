@@ -1,9 +1,8 @@
 
 
 
-I have implements a dynamic hierarchical tree using Angular Material's `mat-tree` and integrates drag-and-drop functionality to manage groups in the tree for clinicians. The clinicians tree do actions like adding, editing, and deleting nodes, along with lazy loading of child nodes, based on hierarchical data.
+I have implemented a dynamic hierarchical tree using Angular Material's `mat-tree` and integrated drag-and-drop functionality to manage groups in the tree for clinicians. The clinicians tree do actions like adding, editing, and deleting nodes, along with lazy loading of child nodes, based on hierarchical data.
 
-## Features
 
 - **Tree Structure**: Nodes can have children, and the tree not achieved expand and collapse.
 https://material.angular.io/components/tree/overview
@@ -56,8 +55,6 @@ https://material.angular.io/cdk/drag-drop/overview
 ---
 
 ## How It Works
-
-### Tree Component (`tree.component.ts`)
 
 1. **Tree Control**: Uses Angular CDK's `NestedTreeControl` to manage nested groups and their structure.
 2. **Data Source**: Uses `MatTreeNestedDataSource` to connect hierarchical data to the tree.
