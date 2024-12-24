@@ -10,7 +10,8 @@ https://material.angular.io/components/tree/overview
 
 
 # Angular Material Tree with Drag-and-Drop
-- **Drag-and-Drop**: drag-and-drop for rearranging nodes  - Not able to acheive.
+- **Drag-and-Drop**: drag-and-drop for rearranging nodes  - Not able to acheived.
+-- HTML tree node is not updating properly after change deduction happend in the TS file
 https://material.angular.io/cdk/drag-drop/overview
 
 - **Add/Remove/Edit Nodes**: adding, editing, and deleting nodes in the tree structure.
@@ -60,11 +61,12 @@ https://material.angular.io/cdk/drag-drop/overview
 
 1. **Tree Control**: Uses Angular CDK's `NestedTreeControl` to manage nested groups and their structure.
 2. **Data Source**: Uses `MatTreeNestedDataSource` to connect hierarchical data to the tree.
-3. **Group Model**: Defines a `Group` interface with properties for `id`, `name`, `type`, and `children`. The children are optional and can be loaded dynamically.
-4. **Drag and Drop**: Integrated with CDK's `drag-drop` module, you can drag and drop nodes in the tree or across containers.
+3. **Group Model**: `Group` interface with properties for `id`, `name`, `type`, and `children`. The children are optional and can be loaded dynamically.
+4. **Drag and Drop**: Integrated with CDK's `drag-drop` module, can drag and drop nodes in the tree.
 5. **Hover Effects**: When hovering over a node, buttons for adding, editing, and deleting become visible, allowing quick actions.
 6. **Actions**: 
    - **Add Group**: Adds a new child node under the selected node.
    - **Edit Group**: Edits the name of the selected group.
    - **Delete Group**: Removes the selected group (confirmation prompt).
-
+7. **Services**:
+   - To get the data and display in the UI as per design
