@@ -26,12 +26,12 @@ https://material.angular.io/cdk/drag-drop/overview
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Anandhan-Thanappan/clinicians.git
    ```
 
 2. Navigate to the project directory:
    ```bash
-   cd <project-directory>
+   cd clinicians
    ```
 
 3. Install the dependencies:
@@ -39,7 +39,7 @@ https://material.angular.io/cdk/drag-drop/overview
    npm install
    ```
 
-4. Make sure you have Angular Material installed:
+4. Check Angular Material installed:
    If not, install Angular Material by running:
    ```bash
    ng add @angular/material
